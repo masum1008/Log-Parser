@@ -13,9 +13,9 @@ def site_add_page(request):
         return HttpResponseRedirect("/sites/list/")
     context = {
         "form": form,
-        "title": "Add Log Format",
+        "title": "Add Site Info",
     }
-    return render(request, 'log_format_add.html', context)
+    return render(request, 'site_add.html', context)
 
 
 def site_list_page(request):

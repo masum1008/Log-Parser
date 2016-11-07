@@ -19,9 +19,11 @@ def logformat_add_page(request):
 
 
 def logformat_list_page(request):
+
     logFormateObj = LogFormats.objects.order_by("-id")
     logFormateList = list(logFormateObj)
     return render(request, 'log_format_list.html', {'logFormateList':logFormateList})
+
 
 
 def logformat_edit_page(request, id=None):

@@ -18,10 +18,11 @@ function createTable(demoData) {
     }
 
     //alert($('#example').html());
-    $('#example tbody').html(tableHtml);
+    $('#a').html(tableHtml);
 };
 
-//var jfjdsf = {% ghfgh%}
+// var data = {{ data }};
+// console.log(data)
 
 var demoData ={
     "data": [

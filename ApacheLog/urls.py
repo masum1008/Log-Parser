@@ -21,5 +21,5 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^home/$', home, name='home'),
     url(r'^logformats/', include('log_formats.urls')),
-
+    url(r'^sites/', include('sites.urls')),
 ]

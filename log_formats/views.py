@@ -19,16 +19,9 @@ def logformat_add_page(request):
 
 
 def logformat_list_page(request):
-    log_list = LogFormats.objects.order_by("-id")
-    lglst = list(log_list)
-    for log in lglst:
-        log.serial = lglst.index(log)+1
-    context = {
-        "log_list": log_list,
-        "count": 1,
-        "title": "List of Logformat",
-    }
-    return render(request, 'log_format_list.html', context)
+    logFormateObj = LogFormats.objects.order_by("-id")
+    logFormateList = list(logFormateObj)
+    return render(request, 'log_format_list.html', {'logFormateList':logFormateList})
 
 
 def logformat_edit_page(request, id=None):

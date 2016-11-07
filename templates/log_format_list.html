@@ -11,10 +11,9 @@
         <td><strong>Action</strong></td>
    </tr>
 
-      {% for ob in log_list %}
+      {% for ob in logFormateList %}
         <tr>
-            <td>{{ob.id}}</td>
-            <td>{{ob.serial}}</td>
+            <td>{{forloop.counter}}</td>
             <td>{{ob.site_name}}</td>
             <td>{{ob.log_format}}</td>
             <td>

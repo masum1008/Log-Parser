@@ -15,14 +15,17 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
-from  sites.views import index, sitelist
+from  sites.views import index, sitelist, addSite, saveSite
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
 
     url(r'^home/', index),
+    url (r'^addsite/',addSite),
     url(r'^sitelist/', sitelist),
+    url(r'^savesite', saveSite),
 ]
+
 # if settings.DEBUG:
 #     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 #     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

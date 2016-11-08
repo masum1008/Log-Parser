@@ -19,16 +19,9 @@ def site_add_page(request):
 
 
 def site_list_page(request):
-    log_list = Site.objects.order_by("-id")
-    lglst = list(log_list)
-    for log in lglst:
-        log.serial = lglst.index(log)+1
-    context = {
-        "log_list": log_list,
-        "count": 1,
-        "title": "List of site",
-    }
-    return render(request, 'log_format_list.html', context)
+    site_list = Site.objects.order_by("-id")
+    site_listList = list(site_list)
+    return render(request, 'site_list.html', {'site_listList':site_listList})
 
 
 def site_edit_page(request, id=None):

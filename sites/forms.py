@@ -1,7 +1,5 @@
 from django import forms
 from .models import Site
-from django.forms import TextInput
-
 
 class SiteForm(forms.ModelForm):
     class Meta:
@@ -11,6 +9,3 @@ class SiteForm(forms.ModelForm):
             "site_name",
             "site_url",
         ]
-        widgets = {
-            'site_url': TextInput(),
-        }

@@ -23,7 +23,6 @@ def site_list_page(request):
     siteList = list(siteObj)
     return render(request, 'site_list.html', {'siteList':siteList})
 
-
 def site_edit_page(request, id=None):
     detail = get_object_or_404(Site, id=id)
     form = SiteForm(request.POST or None, instance=detail)

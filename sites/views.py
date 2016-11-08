@@ -19,9 +19,9 @@ def site_add_page(request):
 
 
 def site_list_page(request):
-    site_list = Site.objects.order_by("-id")
-    site_listList = list(site_list)
-    return render(request, 'site_list.html', {'site_listList':site_listList})
+    siteObj = Site.objects.order_by("-id")
+    siteList = list(siteObj)
+    return render(request, 'log_format_list.html', {'siteList':siteList})
 
 
 def site_edit_page(request, id=None):

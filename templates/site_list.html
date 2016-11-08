@@ -6,12 +6,12 @@
   <table class="table table-bordered table-striped table-hover">
    <tr>
         <td><strong>SN</strong></td>
-        <td><strong>Format Names</strong></td>
+        <td><strong>Site Names</strong></td>
         <td><strong>Log Formats</strong></td>
         <td><strong>Action</strong></td>
    </tr>
 
-      {% for ob in logFormateList %}
+      {% for ob in siteList %}
         <tr>
             <td>{{forloop.counter}}</td>
             <td>{{ob.site_name}}</td>

@@ -17,8 +17,8 @@
             <td>{{ob.site_name}}</td>
             <td>{{ob.site_url}}</td>
             <td>
-                <a href="{% url 'logformat_edit' ob.id %}"><button type="button" class="btn btn-info"><span class="glyphicon glyphicon-pencil"></span></button></a>
-                <a href="{% url 'logformat_delete' ob.id %}"><button type="button" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span></button></a>
+                <a href="{% url 'site_edit' ob.id %}"><button type="button" class="btn btn-info"><span class="glyphicon glyphicon-pencil"></span></button></a>
+                <a href="{% url 'site_delete' ob.id %}"><button type="button" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span></button></a>
             </td>
         </tr>
       {% endfor %}

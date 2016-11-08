@@ -25,7 +25,6 @@ def logformat_list_page(request):
     return render(request, 'log_format_list.html', {'logFormateList':logFormateList})
 
 
-
 def logformat_edit_page(request, id=None):
     detail = get_object_or_404(LogFormats, id=id)
     form = LogFormatForm(request.POST or None, instance=detail)

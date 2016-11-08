@@ -34,7 +34,7 @@ def site_edit_page(request, id=None):
         "form": form,
         "title": "Edit Log Format",
     }
-    return render(request, 'log_format_add.html', context)
+    return render(request, 'site_add.html', context)
 
 
 def site_delete_page(request, id=None):

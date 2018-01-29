@@ -9,3 +9,5 @@ class Site(models.Model):
 
     def __unicode__(self):
         return self.site_name
+    class Meta:
+        unique_together=('site_name','site_url')

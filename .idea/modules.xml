@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/logparser.iml" filepath="$PROJECT_DIR$/.idea/logparser.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/ApacheLog.iml" filepath="$PROJECT_DIR$/.idea/ApacheLog.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../../example-dj-dt/.idea/example-dj-dt.iml" filepath="$PROJECT_DIR$/../../example-dj-dt/.idea/example-dj-dt.iml" />
     </modules>
   </component>
 </project>

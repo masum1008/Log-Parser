@@ -1,28 +1,81 @@
 {% extends 'base.html' %}
 {% block title %}{{ title }}{% endblock %}
 {% block body %}
-<div class="container" style="margin-top: 15px;">
-<!-- Table -->
-  <table class="table table-bordered table-striped table-hover">
-   <tr>
-        <td><strong>SN</strong></td>
-        <td><strong>Site Names</strong></td>
-        <td><strong>URL</strong></td>
-        <td><strong>Action</strong></td>
-   </tr>
+    <div class="container table-responsive">
+        <!-- Table -->
+        <form class="form-inline">
+            <div class="row">
+                <div class="col-md-8"></div>
+                <div class="col-md-4">
+                    <div class="row">
+                        <div class="col-md-1"></div>
+                        <div class="col-md-8">
+                            <label for="site_drop">Select Site</label>
+                        </div>
 
-      {% for ob in siteList %}
-        <tr>
-            <td>{{forloop.counter}}</td>
-            <td>{{ob.site_name}}</td>
-            <td>{{ob.site_url}}</td>
-            <td>
-                <a href="{% url 'site_edit' ob.id %}"><button type="button" class="btn btn-info"><span class="glyphicon glyphicon-pencil"></span></button></a>
-                <a href="{% url 'site_delete' ob.id %}"><button type="button" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span></button></a>
-            </td>
-        </tr>
-      {% endfor %}
+                    </div>
+                    <div class="row">
+                        <select id="site_drop" class="form-control" name="site_name">
+                            <option value="ALL">All</option>
 
-   </table>
-</div>
+                            {% for site in site_list  %}
+                                {% if site.site_name == siteName %}
+                                    <option value="{{ site.site_name }}" selected >{{ site.site_name }}</option>
+                                {% else %}
+                                    <option value="{{ site.site_name }}">{{ site.site_name }}</option>
+                                {% endif %}
+                            {% endfor %}
+                        </select>
+                        <button type="submit" class="btn btn-warning form-control"><i class="material-icons" >search</i></button>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+            <table class="table table-bordered table-striped table-hover">
+                <thead>
+                <tr>
+                    <th>SN</th>
+                    <th>Site Names</th>
+                    <th>URL</th>
+                    <th>Action</th>
+                </tr>
+                </thead>
+
+                <tbody>
+                {% for ob in siteList %}
+                    <tr>
+                        <td>{{forloop.counter}}</td>
+                        <td>{{ob.site_name}}</td>
+                        <td>{{ob.site_url}}</td>
+                        <td>
+                            <a href="{% url 'site_edit' ob.id %}"><button type="button" class="btn btn-info"><span class="glyphicon glyphicon-pencil"></span></button></a>
+                            <a href="{% url 'site_delete' ob.id %}"><button type="button" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span></button></a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+
+            </table>
+
+        <div>
+            <nav>
+                <ul class="pager">
+                    <li class="previous">
+                        {% if siteList.has_previous %}
+                            <a href="?page={{ siteList.previous_page_number }}&site_name={{ siteName }}"><span aria-hidden="true">&larr;</span> Previous</a>
+                        {% endif %}
+                    </li>
+
+                    <li class="next">
+                        {% if siteList.has_next %}
+                            <a href="?page={{ siteList.next_page_number }}&site_name={{ siteName }}">
+                                Next <span aria-hidden="true">&rarr;</span></a>
+                        {% endif %}
+                    </li>
+                </ul>
+            </nav>
+            <hr>
+        </div>
+    </div>
 {% endblock %}

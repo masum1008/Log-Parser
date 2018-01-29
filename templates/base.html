@@ -2,12 +2,20 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>{% block title %}Apache Log Parser{% endblock %}</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <title>{% block title %}Apache Log Parser{% endblock %}</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script type="application/javascript" src="{% static 'js/jquery.min.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <script type="application/javascript" src="{% static 'js/bootstrap.min.js' %}"></script>
+
+
+
+    <style>
+        .dropdown-menu{
+            background-color: lightgrey;
+        }
+    </style>
 
 </head>
 <body>
@@ -18,45 +26,46 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
-      </button>
-    <div class="collapse navbar-collapse" id="myNavbar">
-      <ul class="nav navbar-nav navbar-right">
-          <li><a href="{%  url 'home' %}">Home</a></li>
-          <li class="dropdown">
-          <a class="dropdown-toggle" data-toggle="dropdown" href="#">Site
-          <span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="{% url 'site_add' %}">Add Site</a></li>
-            <li><a href="{% url 'site_list' %}">List Of Sites</a></li>
-          </ul>
-        </li>
-          <li class="dropdown">
-          <a class="dropdown-toggle" data-toggle="dropdown" href="#">Log Format
-          <span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="{% url 'logformat_add' %}">Add Log Format</a></li>
-            <li><a href="{% url 'logformat_list' %}">List Log Formats</a></li>
-          </ul>
-        </li>
-          <li class="dropdown">
-          <a class="dropdown-toggle" data-toggle="dropdown" href="#">Apache Logs
-          <span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="">Upload Log</a></li>
-            <li><a href="">List of Logs</a></li>
-            <li><a href="#">Report</a></li>
-          </ul>
-        </li>
-      </ul>
+    </button>
+    <a href="{%  url 'home' %}" class="navbar-brand">ApacheLogParser</a>
+    <div class="collapse navbar-collapse" id="myNavbar" style="">
+        <ul class="nav navbar-nav navbar-right" >
+            <li><a href="{%  url 'home' %}">Home</a></li>
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">Site
+                    <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                    <li><a href="{% url 'site_add' %}">Add Site</a></li>
+                    <li><a href="{% url 'site_list' %}">List Of Sites</a></li>
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">Log Format
+                    <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                    <li><a href="{% url 'logformat_add' %}">Add Log Format</a></li>
+                    <li><a href="{% url 'logformat_list' %}">List Log Formats</a></li>
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">Apache Logs
+                    <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                    <li><a href="{% url 'uploadlog' %}">Upload Log</a></li>
+                    <li><a href="{% url 'loglist' %}">List of Logs</a></li>
+{#                    <li><a href="{% url 'report' %}">Report</a></li>#}
+                </ul>
+            </li>
+        </ul>
     </div>
 
 </nav>
 
-<div class="container-fluid text-center">
+<div class="container-fluid">
 
-  {% block body %}
+    {% block body %}
 
-  {% endblock %}
+    {% endblock %}
 </div>
 
 </body>

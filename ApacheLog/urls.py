@@ -15,11 +15,19 @@ Including another URLconf
 """
 from django.conf.urls import url, include
 from django.contrib import admin
-from views import home
+from django.conf import settings
+from django.conf.urls.static import static
+from views import home, report, export_xls
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^home/$', home, name='home'),
+    url(r'^$', home, name='/'),
     url(r'^logformats/', include('log_formats.urls')),
     url(r'^sites/', include('sites.urls')),
+    url(r'^log/', include('apache_logs.urls')),
+    url(r'^report/', report, name='report'),
+    url(r'^export/xls/$', export_xls, name='export_xls'),
 ]
+if settings.DEBUG:
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

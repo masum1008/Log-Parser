@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% block title %}{{ title }}{% endblock %}
+{% block body %}
+    <div class="container table-responsive" style="margin-top: 15px;">
+        <!-- Search -->
+        <form method="GET" class="navbar-form navbar-left">
+            <div class="form-group">
+                Search By Site Name: <input type="text" class="form-control" placeholder="Search" value="{{request.GET.q}}" name="q">
+            </div>
+            <button type="submit" class="btn btn-warning">Search</button>
+        </form>
+        <!-- list-- -->
+        <table class="table table-bordered table-striped table-hover">
+            <thead>
+            <tr>
+                <th>SN</th>
+                <th>Site Names</th>
+                <th>Log Formats</th>
+                <th style="width: 150px;">Action</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            {% for ob in log_list %}
+                <tr>
+                    <td>{{forloop.counter}}</td>
+                    <td>{{ob.site.site_name}}</td>
+                    <td>{{ob.log_format}}</td>
+                    <td style="width: 150px;">
+                        {#<input class="format-id" type="text" value="{{ob.id}}">#}
+                        <a href="{% url 'logformat_edit' ob.id %}"><button type="button" title="Edit" class="btn btn-info"><span class="glyphicon glyphicon-pencil"></span></button></a>
+                        <a href="{% url 'logformat_delete' ob.id %}"><button type="button" title="Delete" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span></button></a>
+                        {% if ob.is_default %}
+                            <a href="{% url 'set_default_logformat' ob.id %}"><button type="button" disabled class="btn btn-info"><span class="glyphicon glyphicon-ok"></span></button></a>
+                        {% else %}
+                            <a href="{% url 'set_default_logformat' ob.id %}"><button type="button" title="Set As Default Format" class="btn btn-default"><span class="glyphicon glyphicon-ok"></span></button></a>
+                        {% endif %}
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+
+        </table>
+        <div>
+            <nav>
+                <ul class="pager">
+                    <li class="previous">{% if log_list.has_previous %}
+                        <a href="?page={{ log_list.previous_page_number }}"><span aria-hidden="true">&larr;</span> Previous</a>
+                    {% endif %}
+                    </li>
+
+                    <li class="next">{% if log_list.has_next %}
+                        <a href="?page={{ log_list.next_page_number }}">
+                            Next <span aria-hidden="true">&rarr;</span></a>{% endif %}</li>
+                </ul>
+            </nav>
+            <hr>
+
+        </div>
+    </div>
+{% endblock %}

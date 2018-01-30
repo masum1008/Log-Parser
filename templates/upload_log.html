@@ -1,0 +1,94 @@
+{% extends 'base.html' %}
+{% block title %}{{ title }}{% endblock %}
+{% load crispy_forms_tags %}
+{% block body %}
+
+    <div class ='col-sm-6 col-sm-offset-3 panel panel-default'>
+
+        <div class="panel-heading"><h1>ApacheLogParser</h1></div>
+        <div class='panel-body'>
+            <form action="{% url 'parse' %}" method="post" enctype="multipart/form-data">{%csrf_token%}
+                {{ form |crispy}}
+                <label for="site_drop">Select Site</label>
+                <select id="site_drop" class="form-control" name="site_id" required>
+                    {% for site in sites  %}
+                        {% if site_id == site.id %}
+                             <option value="{{ site.id }}" selected >{{ site.site_name }}</option>
+                        {% else %}
+                             <option value="{{ site.id }}">{{ site.site_name }}</option>
+                        {% endif %}
+
+                    {% endfor %}
+                </select>
+                <hr>
+                <fieldset>
+                    <label for="site_drop_log_option">Log Type:</label>
+                    <select id="site_drop_log_option" class="form-control" name="" required>
+
+                        <option value="ACCLOG">Access Log</option>
+                        <option value="ERRORLOG">Error Log</option>
+
+                    </select>
+                </fieldset>
+
+                <hr>
+                <fieldset>
+
+                    <label for="log_format">Select Log:</label>
+                    <div class='log-format-list' id="log_format" align="left">
+                    </div>
+                    <h5 style="color: red" class="hidden" id="error_msg">
+                        Please add log format before to parse!
+                    </h5>
+                </fieldset>
+
+                <label for="file_up">Select Log File</label>
+                <input type="file" name="ufile" class="form-control" id="file_up" required>
+                <h5 style="color: red;">{{ msg }}</h5>
+                </br>
+                <button type="submit" id="submit_btn" class="btn btn-primary"> Parse </button>
+            </form>
+        </div>
+
+    </div>
+
+    <script>
+        loadLogFormat($('#site_drop').val());
+        $('#site_drop').on('change', function () {
+            var site_id = $(this).val();
+            loadLogFormat(site_id);
+        });
+
+        function loadLogFormat(site_id){
+            $.get("{% url 'loadLogFormat' %}",
+                    {
+                        site_id : site_id
+                    },
+                    function(data,status){
+                        console.log(data)
+                        var btnHtml ='';
+
+                        $('#error_msg').addClass('hidden');
+                        $('#submit_btn').removeClass('disabled');
+                        $('#submit_btn').attr('type','submit');
+
+                        for(var i = 0; i<data.length; i++) {
+                            btnHtml+=   '<div class="radio">';
+                            if (data[i].is_default){
+                                btnHtml+='<label><input type="radio" checked name="log_format_id" value="'+ data[i].id +'">'+ data[i].log_format +'</label>';
+                            }
+                            else {
+                                btnHtml+='<label><input type="radio" name="log_format_id" value="' + data[i].id + '">' + data[i].log_format + '</label>';
+                            }
+                            btnHtml+='</div>';
+                        }
+                        $('.log-format-list').html(btnHtml);
+                        if (data.length==0) {
+                            $('#error_msg').removeClass('hidden');
+                            $('#submit_btn').addClass('disabled');
+                            $('#submit_btn').attr('type','button');
+                        }
+                    });
+        }
+    </script>
+{% endblock%}

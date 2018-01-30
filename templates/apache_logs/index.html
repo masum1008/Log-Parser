@@ -1,0 +1,26 @@
+<html>
+<head>
+</head>
+
+<body>
+<h1><a href='https://docs.djangoproject.com/en/dev/ref/files/'>DJango File Handling</a></h1>
+
+{% if error %}
+	Error: <br/>
+	<pre>{{error}}</pre>
+	<hr/>
+{% endif %}
+
+{%if fileName%} File Path = {{fileName}} <br/>{%endif%}
+{%if fileSize%} File Size = {{fileSize}} bytes <br/>{%endif%}
+{%if fileMode%} File Mode = {{fileMode}} <br/>{%endif%}
+
+{% if fileContent %}
+	<p>Content of file stored at server: <br/>
+		<pre>{{fileContent}}</pre>
+	</p>
+	<hr/>
+{% endif %}
+
+</body>
+</html>

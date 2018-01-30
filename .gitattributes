@@ -1,2 +1,1 @@
-*.C linguist-language=Python
-*.H linguist-language=Python
+static/* linguist-vendored

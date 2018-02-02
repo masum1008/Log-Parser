@@ -217,3 +217,4 @@ ALTER TABLE log_formats_logformats
   ADD CONSTRAINT log_formats_logformats_sites_site_id_fk
 FOREIGN KEY (site_id) REFERENCES sites_site (id);
 
+ALTER TABLE apache_logs_apachelog MODIFY time_us DOUBLE;

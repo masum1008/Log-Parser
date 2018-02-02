@@ -18,7 +18,7 @@ class ApacheLog(models.Model):
     request_url_path = models.CharField(max_length=500,null=True)
     time_received_tz = models.DateTimeField(max_length=50,null=True)
     time_received_tz_isoformat = models.CharField(max_length=50,null=True)
-    time_us = models.CharField(max_length=50, null=True)
+    time_us = models.DecimalField(max_digits=20,decimal_places=4)
     unique_together = ('site_id','local_ip','status','time_received_tz_isoformat','request_url_path','response_bytes_clf','request_method')
 
 class LogTable(Table):
@@ -26,6 +26,7 @@ class LogTable(Table):
     request_method = Column(field='request_method', header='Method')
     status = Column(field='status', header='Status Code')
     response_bytes_clf = Column(field='response_bytes_clf', header='Response Byte')
+    time_us = Column(field='time_us', header='Response Time')
     time_received_tz = DatetimeColumn(field='time_received_tz', header='Time')
     request_url_path = Column(field='request_url_path', header='Request URL')
 

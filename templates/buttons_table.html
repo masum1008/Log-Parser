@@ -29,7 +29,12 @@
     "dom": "<'row'<'col-sm-9 col-md-9 col-lg-9'B><'col-sm-3 col-md-3 col-lg-3'f>>rt<'row'<'col-sm-3 col-md-3 col-lg-3'i><'col-sm-6 col-md-6 col-lg-6 col-sm-offset-2 col-md-offset-2 col-lg-offset-2'p><'col-sm-1 col-md-1 col-lg-1'l>>",
 {% endblock %}
 {% block table_extra_options %}
-    "buttons": ['copy','excel','csv','pdf', {
+    "buttons": ['copy','excel','csv',{
+                extend: 'pdfHtml5',
+                orientation: 'landscape',
+                pageSize: 'A4',
+                title:"Log List"
+            }, {
             extend: 'print',
             text: 'Print',
             autoPrint: false
